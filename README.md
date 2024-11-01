@@ -1,2 +1,2 @@
-# sushi-haiku-fast
-website for a business
+# HAIKU FAST SUSHI
+website for a local  business
