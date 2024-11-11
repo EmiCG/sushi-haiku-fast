@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&family=Eagle+Lake&family=Ma+Shan+Zheng&family=Shojumaru&display=swap');
+
+body {
+    background-color: black;
+    color: #fff;
+    font-family: 'Shojumaru';
+    display: auto;
+    position: relative;
+
+    opacity: 0;
+    transform: translateY(-40px); /* Ajuste para una transición más sutil */
+    transition: opacity 3s ease, transform 3s ease;
+  }
+
+  body.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+  
+  body::before {
+    content: "";
+    background-image: url(/src/fondos/background-body-opcion-3.jpeg);
+    background-size: auto;
+    opacity: 15%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+/*Estilos header*/
+
+header {
+    width: 100%;
+}
+
+.containerHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logotipo {
+    width: 300%;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+
+#redes {
+    width: 200%;
+    text-align: center;
+    padding-right: 5%;
+    padding-top: 5%;
+}
+
+#redes a{
+    text-decoration: none;
+}
+
+.orden-text {
+    margin-top: 10px; 
+    color: #fff;
+    font-size: 150%;
+    text-align: center;
+}
+
+/*Estilos menu de opciones*/
+
+.containerBodyMenu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.containerBodyMenu span {
+    margin-left: 5%;
+    margin-top: 5%;
+    font-size: 150%;
+}
+
+.containerBodyMenu span a {
+    text-decoration: none;
+}
+
+/*linea separadora del menu*/
+
+.full-width-line {
+    width: 90%; /* 100% menos 5% de margen a cada lado */
+    margin: 0 auto; /* Centrar el div */
+    border-bottom: 5px solid #fff;
+}
+
+/*Estilos menu de sushi*/
+
+.orden-text-body-rollos {
+    margin-top: 5%;
+    margin-left: 5%; 
+    color: #fff;
+    font-size: 230%;
+    text-align: left;
+}
+
+
+.elemento-rollo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6%;
+}
+
+.imagen-rollo {
+    width: 40%; /* Ajuste de ancho para dar más espacio a la descripción */
+    padding-left: 2%;
+}
+
+.descripcion-rollo {
+    width: 55%; /* Ajuste de ancho para que se alinee mejor */
+    text-align: left;
+    padding-right: 2%;
+}
+
+/*Línea con puntos y precio */
+
+.encabezado-rollo {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.linea-con-puntos {
+    position: relative;
+    width: 80%; 
+    height: 2px;
+    background-color: white;
+    margin-right: 2%;   
+}
+
+.linea-con-puntos::before,
+.linea-con-puntos::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.linea-con-puntos::before {
+    left: 0;
+}
+
+.linea-con-puntos::after {
+    right: 0;
+}
+
+/*Estilos footer*/
+
+footer {
+    width: 80%;
+    background-color: #f57e50;
+    color: #fff;
+    text-align: center;
+    position: static;
+    bottom: 0;
+    margin: 0 auto; 
+    font-size: 80%;
+}
+
+footer p {
+    padding: 1%;
+    margin-left: 3%;
+}
+
+
+/*Estilos de la página de mision y vision*/
+
+.containerBodyMisionVision {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: 60%;
+}
+
+.containerMV {
+    width: 80%;
+    background-image: url(/src/fondos/background-mision-vision.jpg);
+    color: black;
+    border-radius: 6%;
+}
+
+
+.containerBodyMisionVision span {
+    text-align: center;
+    font-size: 150%;
+}
+
+.containerBodyMisionVision span p {
+    margin: 4%;
+    margin-top: 6%;
+}
+
+/*Estilos de la página de instrucciones de entrega*/
+
+.elemento-instruccion {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6%;
+}
+
+.imagen-entregas {
+    width: 40%; 
+    padding-left: 2%;
+}
+
+.imagen-entregas img {
+    width: 50%;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.contenido-entregas {
+    width: 55%; 
+    text-align: left;
+    padding-right: 2%;
+    font-size: 100%;
+}
+
+
+.contenido-instruccion-descripcion {
+    margin-top: 10%;
+}
+
+
+/* Estilo inicial para la animación de desvanecimiento */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px); 
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Clase visible que activa la animación */
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0); 
+}
