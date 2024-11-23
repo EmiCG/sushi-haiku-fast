@@ -92,6 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const promoDiv = document.createElement("div");
             promoDiv.classList.add("promocion");
 
+            const rutaImagen = `https://drive.google.com/uc?export=view&id=${promocion.imagen}`;
+            
             promoDiv.innerHTML = `
                 <a href="entregas.html">
                     <img src="${promocion.imagen}" alt="${promocion.titulo}" />
