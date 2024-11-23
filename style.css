@@ -63,7 +63,7 @@ header {
 .orden-text {
     margin-top: 10px; 
     color: #fff;
-    font-size: 150%;
+    font-size: 100%;
     text-align: center;
 }
 
@@ -253,4 +253,42 @@ footer p {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0); 
+}
+
+/*Estilos de las promociones*/
+
+.bodyContainerPromociones {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#containerBodyPromocionesFijas,
+#containerBodyPromocionesTemporales {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* espacio entre las promociones */
+    margin-top: 2%; /* Reducido para un mejor ajuste */
+    margin-bottom: 2%;
+}
+
+.promocion {
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    width: 45%; /* Ajusta el tamaño de cada promoción para que se acumulen mejor */
+}
+
+.promocion img {
+    width: 80%; /* Aumentado para mejor visibilidad */
+    border-radius: 10px;
+}
+
+.promocion a {
+    text-decoration: none;
+    color: #ddd;
 }
