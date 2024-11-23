@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const sheetId = '16IPSBvan4QeserKoVITGaa69PlB1kEruJIBhSI7eIY0';
     const apiKey = 'AIzaSyDsPbURzpo3Te1e_QzZrw5n-YY8kNjg6Bw';
 
-    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Promociones_Haiku_Fast_Sushi?key=${apiKey}`)
+    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/tablaPromociones?key=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             const rows = data.values;
