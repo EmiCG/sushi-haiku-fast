@@ -93,10 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
             promoDiv.classList.add("promocion");
 
             const rutaImagen = `https://drive.google.com/uc?export=view&id=${promocion.imagen}`;
-            
+
             promoDiv.innerHTML = `
                 <a href="entregas.html">
-                    <img src="${promocion.imagen}" alt="${promocion.titulo}" />
+                    <img src="${rutaImagen}" alt="${promocion.titulo}" />
                     <h3>${promocion.titulo}</h3>
                     <p>${promocion.descripcion}</p>
                 </a>
@@ -111,6 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/tablaPromociones?key=${apiKey}`)
         .then(response => response.json())
         .then(data => {
+            // Inspeccionamos los datos para verificar que todo esté correcto
+            console.log(data);
+
             const rows = data.values;
             const promocionesFijas = [];
             const promocionesTemporales = [];

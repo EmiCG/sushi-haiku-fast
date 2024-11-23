@@ -272,7 +272,7 @@ footer p {
     justify-content: center;
     gap: 20px; /* espacio entre las promociones */
     margin-top: 2%; /* Reducido para un mejor ajuste */
-    margin-bottom: 2%;
+    margin-bottom: 20%;
 }
 
 .promocion {
@@ -280,11 +280,14 @@ footer p {
     border-radius: 10px;
     padding: 10px;
     text-align: center;
-    width: 45%; /* Ajusta el tamaño de cada promoción para que se acumulen mejor */
+    width: 100%;
+    max-width: 300px; /* Ajusta el tamaño de cada promoción para que se acumulen mejor */
 }
 
 .promocion img {
-    width: 80%; /* Aumentado para mejor visibilidad */
+    width: 100%;  /* 100% del ancho del contenedor */
+    max-width: 100%; /* Evita que la imagen se desborde */
+    height: auto; /* Mantiene la proporción de la imagen */
     border-radius: 10px;
 }
 
