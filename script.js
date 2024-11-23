@@ -82,7 +82,6 @@ fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/NombreDeH
     .catch(error => console.error('Error al acceder a Google Sheets:', error));
 */
 
-
 document.addEventListener("DOMContentLoaded", function () {
     function cargarPromociones(containerId, promociones) {
         const promocionesContainer = document.getElementById(containerId);
@@ -92,7 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const promoDiv = document.createElement("div");
             promoDiv.classList.add("promocion");
 
-            const rutaImagen = `https://drive.google.com/uc?export=view&id=${promocion.imagen}`;
+            // Aquí construimos correctamente la URL de la imagen
+            const rutaImagen = `src/promociones/${promocion.imagen}`;
 
             promoDiv.innerHTML = `
                 <a href="entregas.html">
