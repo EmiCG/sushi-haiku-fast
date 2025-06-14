@@ -1,0 +1,24 @@
+# netlify.toml
+
+[build]
+  publish = "." # Directorio donde se encuentra tu HTML/CSS/JS. '.' significa la raíz del repositorio.
+  command = "" # Deja esto vacío para HTML/CSS/JS puros, ya que no hay comando de compilación.
+
+[functions]
+  directory = "netlify/functions" # Directorio donde se encuentran tus Netlify Functions.
+  # node_bundler = "esbuild" # Opcional: puedes especificar el bundler, 'esbuild' es rápido.
+  # external_node_modules = ["node-fetch"] # Opcional: si necesitas un módulo Node que no está por defecto.
+                                        # Para 'node-fetch' puede que no sea necesario si ya está incluido por Netlify.
+
+# Configuración de redirecciones o reescrituras (opcional, pero útil para SPAs o rutas de funciones)
+# [[redirects]]
+#   from = "/api/*"
+#   to = "/.netlify/functions/:splat"
+#   status = 200
+
+# Configuración para el entorno de desarrollo local (netlify dev)
+[dev]
+  framework = "#static" # Indica a Netlify CLI que es un sitio estático
+  publish = "."
+  functions = "netlify/functions"
+  port = 8888 # Puerto para el frontend

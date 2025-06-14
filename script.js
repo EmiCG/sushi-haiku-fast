@@ -27,64 +27,69 @@ elementosFadeIn.forEach(elemento => {
     observer.observe(elemento);
 });
 
-/*
+// document.addEventListener("DOMContentLoaded", function () {
+//     function cargarPromociones(containerId, promociones) {
+//         const promocionesContainer = document.getElementById(containerId);
+//         promocionesContainer.innerHTML = ""; // Limpiar el contenido existente
+
+//         promociones.forEach(promocion => {
+//             const promoDiv = document.createElement("div");
+//             promoDiv.classList.add("promocion");
+
+//             // Aquí construimos correctamente la URL de la imagen
+//             const rutaImagen = `src/promociones/${promocion.imagen}`;
+
+//             promoDiv.innerHTML = `
+//                 <a href="entregas.html">
+//                     <img src="${rutaImagen}" alt="${promocion.titulo}" />
+//                     <h3>${promocion.titulo}</h3>
+//                     <p>${promocion.descripcion}</p>
+//                 </a>
+//             `;
+//             promocionesContainer.appendChild(promoDiv);
+//         });
+//     }
+
+//     const sheetId = '16IPSBvan4QeserKoVITGaa69PlB1kEruJIBhSI7eIY0';
+//     const apiKey = 'AIzaSyDsPbURzpo3Te1e_QzZrw5n-YY8kNjg6Bw';
+
+//     fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/tablaPromociones?key=${apiKey}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             // Inspeccionamos los datos para verificar que todo esté correcto
+//             console.log(data);
+
+//             const rows = data.values;
+//             const promocionesFijas = [];
+//             const promocionesTemporales = [];
+
+//             // Saltar la primera fila (encabezados) y procesar los datos
+//             for (let i = 1; i < rows.length; i++) {
+//                 const [titulo, descripcion, imagen, tipo] = rows[i];
+//                 const promocion = { titulo, descripcion, imagen };
+
+//                 if (tipo === "fija") {
+//                     promocionesFijas.push(promocion);
+//                 } else if (tipo === "temporal") {
+//                     promocionesTemporales.push(promocion);
+//                 }
+//             }
+
+//             // Cargar las promociones en los contenedores respectivos
+//             cargarPromociones("containerBodyPromocionesFijas", promocionesFijas);
+//             cargarPromociones("containerBodyPromocionesTemporales", promocionesTemporales);
+//         })
+//         .catch(error => console.error('Error al acceder a Google Sheets:', error));
+// });
+
 document.addEventListener("DOMContentLoaded", function () {
-    function cargarPromociones(containerId, jsonFile) {
-        const promocionesContainer = document.getElementById(containerId);
-
-        fetch(jsonFile)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("No se pudo cargar el archivo de promociones.");
-                }
-                return response.json();
-            })
-            .then(data => {
-                promocionesContainer.innerHTML = ""; // Limpiar el texto de carga
-
-                data.forEach(promocion => {
-                    const promoDiv = document.createElement("div");
-                    promoDiv.classList.add("promocion");
-
-                    // Construir la ruta de la imagen
-                    const rutaImagen = `src/promociones/${promocion.imagen}`;
-
-                    promoDiv.innerHTML = `
-                        <a href="entregas.html">
-                            <img src="${rutaImagen}" alt="${promocion.titulo}" />
-                            <h3>${promocion.titulo}</h3>
-                            <p>${promocion.descripcion}</p>
-                        </a>
-                    `;
-                    promocionesContainer.appendChild(promoDiv);
-                });
-            })
-            .catch(error => {
-                promocionesContainer.innerHTML = "<p>Error al cargar las promociones.</p>";
-                console.error("Error:", error);
-            });
-    }
-
-    // Llamadas a la función para cargar diferentes tipos de promociones
-    cargarPromociones("containerBodyPromocionesFijas", "promocionesFijas.json");
-    cargarPromociones("containerBodyPromocionesTemporales", "promocionesTemporales.json");
-});
-
-const sheetId = '1vTlMeaeFiqCvLyrkLJgCBHw-LTF2mTq9mYaJmBAYKMt2sXGPseaKgwqiidEtqvuRKbGkXFi9Nqv3xA9';
-const apiKey = 'AIzaSyDsPbURzpo3Te1e_QzZrw5n-YY8kNjg6Bw';
-
-fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/NombreDeHoja?key=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        // Aquí puedes manipular `data` para mostrar las promociones en tu web.
-    })
-    .catch(error => console.error('Error al acceder a Google Sheets:', error));
-*/
-
-document.addEventListener("DOMContentLoaded", function () {
+    // Función para cargar las promociones en los contenedores HTML
     function cargarPromociones(containerId, promociones) {
         const promocionesContainer = document.getElementById(containerId);
+        if (!promocionesContainer) {
+            console.error(`Contenedor con ID "${containerId}" no encontrado.`);
+            return;
+        }
         promocionesContainer.innerHTML = ""; // Limpiar el contenido existente
 
         promociones.forEach(promocion => {
@@ -92,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
             promoDiv.classList.add("promocion");
 
             // Aquí construimos correctamente la URL de la imagen
+            // Asegúrate de que 'src/promociones/' sea la ruta correcta relativa a tu HTML
             const rutaImagen = `src/promociones/${promocion.imagen}`;
 
             promoDiv.innerHTML = `
@@ -105,28 +111,54 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    const sheetId = '16IPSBvan4QeserKoVITGaa69PlB1kEruJIBhSI7eIY0';
-    const apiKey = 'AIzaSyDsPbURzpo3Te1e_QzZrw5n-YY8kNjg6Bw';
+    // URL de tu función Netlify. 
+    // Por convención, las funciones Netlify se encuentran en /.netlify/functions/<nombre-de-tu-funcion>
+    // Asegúrate de que el nombre del archivo de tu función serverless sea 'getPromocionesData.js'
+    const netlifyFunctionUrl = '/.netlify/functions/getPromocionesData'; 
 
-    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/tablaPromociones?key=${apiKey}`)
-        .then(response => response.json())
+    fetch(netlifyFunctionUrl)
+        .then(response => {
+            // Manejar errores de la respuesta HTTP de la función Netlify
+            if (!response.ok) {
+                // Si la respuesta no es OK (ej. 4xx, 5xx), lanzamos un error
+                // para que sea capturado por el bloque .catch
+                return response.json().then(errorData => {
+                    throw new Error(`Error HTTP ${response.status}: ${errorData.error || 'Mensaje desconocido'}`);
+                });
+            }
+            return response.json();
+        })
         .then(data => {
-            // Inspeccionamos los datos para verificar que todo esté correcto
-            console.log(data);
+            // 'data' ahora es la respuesta de tu función Netlify,
+            // que ya debería contener el 'values' de Google Sheets.
+            // No necesitas sheetId ni apiKey aquí en el frontend.
+            console.log("Datos recibidos de la función Netlify:", data);
+
+            // Verificamos que 'data.values' exista y sea un array
+            if (!data.values || !Array.isArray(data.values)) {
+                throw new Error("Formato de datos inesperado de la función Netlify. Se esperaba 'values'.");
+            }
 
             const rows = data.values;
             const promocionesFijas = [];
             const promocionesTemporales = [];
 
             // Saltar la primera fila (encabezados) y procesar los datos
+            // Asegúrate de que el índice de tus columnas (titulo, descripcion, imagen, tipo)
+            // coincida con el orden de tu Google Sheet.
             for (let i = 1; i < rows.length; i++) {
                 const [titulo, descripcion, imagen, tipo] = rows[i];
-                const promocion = { titulo, descripcion, imagen };
+                // Asegurarse de que todas las variables existan antes de usarlas
+                if (titulo && descripcion && imagen && tipo) {
+                    const promocion = { titulo, descripcion, imagen };
 
-                if (tipo === "fija") {
-                    promocionesFijas.push(promocion);
-                } else if (tipo === "temporal") {
-                    promocionesTemporales.push(promocion);
+                    if (tipo.toLowerCase() === "fija") { // Usar toLowerCase para mayor robustez
+                        promocionesFijas.push(promocion);
+                    } else if (tipo.toLowerCase() === "temporal") {
+                        promocionesTemporales.push(promocion);
+                    }
+                } else {
+                    console.warn(`Fila incompleta o mal formada en Google Sheet (fila ${i + 1}):`, rows[i]);
                 }
             }
 
@@ -134,5 +166,9 @@ document.addEventListener("DOMContentLoaded", function () {
             cargarPromociones("containerBodyPromocionesFijas", promocionesFijas);
             cargarPromociones("containerBodyPromocionesTemporales", promocionesTemporales);
         })
-        .catch(error => console.error('Error al acceder a Google Sheets:', error));
+        .catch(error => {
+            console.error('Error al cargar las promociones:', error);
+            // Opcional: Mostrar un mensaje de error al usuario en la UI
+            // Por ejemplo: document.getElementById('error-message-div').textContent = 'No se pudieron cargar las promociones. Inténtalo más tarde.';
+        });
 });
