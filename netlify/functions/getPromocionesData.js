@@ -1,15 +1,4 @@
-// netlify/functions/getPromocionesData.js
-// Esta función se ejecuta en el servidor de Netlify, no en el navegador.
-
-// Importa 'node-fetch' si tu entorno de Node.js no lo tiene globalmente.
-// Netlify Functions usualmente lo tienen disponible por defecto.
-// Si tienes problemas de dependencia, podrías necesitar un package.json
-// en la carpeta 'netlify/functions' e instalar node-fetch ahí.
-// const fetch = require('node-fetch'); // Descomentar si es necesario
-
 exports.handler = async (event, context) => {
-    // Estas variables de entorno se configurarán en la UI de Netlify
-    // y solo serán accesibles para esta función del lado del servidor.
     const SHEET_ID = process.env.GOOGLE_SHEET_ID;
     const API_KEY = process.env.GOOGLE_SHEETS_API_KEY;
 
@@ -51,9 +40,6 @@ exports.handler = async (event, context) => {
             statusCode: 200,
             body: JSON.stringify(data),
             headers: {
-                // Esto es importante si tu dominio de Netlify es diferente a donde haces el desarrollo local
-                // '*' permite que cualquier origen acceda a la función.
-                // En producción, es mejor especificar el dominio exacto de tu frontend.
                 'Access-Control-Allow-Origin': '*', 
                 'Content-Type': 'application/json',
             },

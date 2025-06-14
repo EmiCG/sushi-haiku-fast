@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
             promoDiv.classList.add("promocion");
 
             // Aquí construimos correctamente la URL de la imagen
-            // Asegúrate de que 'src/promociones/' sea la ruta correcta relativa a tu HTML
             const rutaImagen = `src/promociones/${promocion.imagen}`;
 
             promoDiv.innerHTML = `
@@ -56,9 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // URL de tu función Netlify. 
-    // Por convención, las funciones Netlify se encuentran en /.netlify/functions/<nombre-de-tu-funcion>
-    // Asegúrate de que el nombre del archivo de tu función serverless sea 'getPromocionesData.js'
+    // URL de la funcion de netlify
     const netlifyFunctionUrl = '/.netlify/functions/getPromocionesData'; 
 
     fetch(netlifyFunctionUrl)
@@ -74,12 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(data => {
-            // 'data' ahora es la respuesta de tu función Netlify,
-            // que ya debería contener el 'values' de Google Sheets.
-            // No necesitas sheetId ni apiKey aquí en el frontend.
             console.log("Datos recibidos de la función Netlify:", data);
 
-            // Verificamos que 'data.values' exista y sea un array
             if (!data.values || !Array.isArray(data.values)) {
                 throw new Error("Formato de datos inesperado de la función Netlify. Se esperaba 'values'.");
             }
@@ -88,9 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const promocionesFijas = [];
             const promocionesTemporales = [];
 
-            // Saltar la primera fila (encabezados) y procesar los datos
-            // Asegúrate de que el índice de tus columnas (titulo, descripcion, imagen, tipo)
-            // coincida con el orden de tu Google Sheet.
             for (let i = 1; i < rows.length; i++) {
                 const [titulo, descripcion, imagen, tipo] = rows[i];
                 // Asegurarse de que todas las variables existan antes de usarlas
@@ -113,7 +103,5 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => {
             console.error('Error al cargar las promociones:', error);
-            // Opcional: Mostrar un mensaje de error al usuario en la UI
-            // Por ejemplo: document.getElementById('error-message-div').textContent = 'No se pudieron cargar las promociones. Inténtalo más tarde.';
         });
 });
