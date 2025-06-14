@@ -27,60 +27,7 @@ elementosFadeIn.forEach(elemento => {
     observer.observe(elemento);
 });
 
-/*
-document.addEventListener("DOMContentLoaded", function () {
-    function cargarPromociones(containerId, jsonFile) {
-        const promocionesContainer = document.getElementById(containerId);
 
-        fetch(jsonFile)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("No se pudo cargar el archivo de promociones.");
-                }
-                return response.json();
-            })
-            .then(data => {
-                promocionesContainer.innerHTML = ""; // Limpiar el texto de carga
-
-                data.forEach(promocion => {
-                    const promoDiv = document.createElement("div");
-                    promoDiv.classList.add("promocion");
-
-                    // Construir la ruta de la imagen
-                    const rutaImagen = `src/promociones/${promocion.imagen}`;
-
-                    promoDiv.innerHTML = `
-                        <a href="entregas.html">
-                            <img src="${rutaImagen}" alt="${promocion.titulo}" />
-                            <h3>${promocion.titulo}</h3>
-                            <p>${promocion.descripcion}</p>
-                        </a>
-                    `;
-                    promocionesContainer.appendChild(promoDiv);
-                });
-            })
-            .catch(error => {
-                promocionesContainer.innerHTML = "<p>Error al cargar las promociones.</p>";
-                console.error("Error:", error);
-            });
-    }
-
-    // Llamadas a la función para cargar diferentes tipos de promociones
-    cargarPromociones("containerBodyPromocionesFijas", "promocionesFijas.json");
-    cargarPromociones("containerBodyPromocionesTemporales", "promocionesTemporales.json");
-});
-
-const sheetId = '1vTlMeaeFiqCvLyrkLJgCBHw-LTF2mTq9mYaJmBAYKMt2sXGPseaKgwqiidEtqvuRKbGkXFi9Nqv3xA9';
-const apiKey = 'AIzaSyDsPbURzpo3Te1e_QzZrw5n-YY8kNjg6Bw';
-
-fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/NombreDeHoja?key=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        // Aquí puedes manipular `data` para mostrar las promociones en tu web.
-    })
-    .catch(error => console.error('Error al acceder a Google Sheets:', error));
-*/
 
 document.addEventListener("DOMContentLoaded", function () {
     function cargarPromociones(containerId, promociones) {
